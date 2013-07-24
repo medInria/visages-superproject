@@ -1,20 +1,20 @@
-function(animaMath_project)
 
-set(ep animaMath)
+function(animaFiltering_project)
+
+set(ep animaFiltering)
 
 ## #############################################################################
 ## List the dependencies of the project
 ## #############################################################################
 
 list(APPEND ${ep}_dependencies 
-  ""
+  animaMath
   )
   
   
 ## #############################################################################
 ## Prepare the project
 ## ############################################################################# 
-
 
 EP_Initialisation(${ep}  
   USE_SYSTEM OFF 
@@ -37,10 +37,16 @@ EP_SetDirectories(${ep}
 ## Define repository where get the sources
 ## #############################################################################
 
-set(url svn+ssh://${GFORGE_USERNAME}@scm.gforge.inria.fr/svnroot/anima-maths/trunk)
-set(tag 117)
+set (url svn+ssh://${GFORGE_USERNAME}@scm.gforge.inria.fr/svnroot/anima-filters/trunk)
+set (tag 81)
 if (NOT DEFINED ${ep}_SOURCE_DIR)
+<<<<<<< HEAD
   set(location SVN_REPOSITORY ${url}@${tag})
+=======
+  set(location 
+    SVN_REPOSITORY "svn+ssh://${GFORGE_USERNAME}@scm.gforge.inria.fr/svnroot/anima-filters/trunk@82"
+  )
+>>>>>>> Move anima to revisions just before v2.1.0 branches creations
 endif()
 
 
@@ -62,6 +68,8 @@ set(cmake_args
   -DBUILD_SHARED_LIBS:BOOL=${BUILD_SHARED_LIBS_${ep}}
   -DBUILD_TOOLS:BOOL=OFF
   -DITK_DIR:FILEPATH=${ITK_DIR}
+  -DVTK_DIR:FILEPATH=${VTK_DIR}
+  -DANIMA-MATHS_DIR:FILEPATH=${animaMath_DIR}
   )
 
 ## #############################################################################
@@ -75,7 +83,6 @@ ExternalProject_Add(${ep}
   CMAKE_ARGS ${cmake_args}
   DEPENDS ${${ep}_dependencies}
   INSTALL_COMMAND ""  
-  UPDATE_COMMAND ""
   )
 
 
