@@ -28,8 +28,9 @@ EP_SetDirectories(${ep}
 ## #############################################################################
 
 set(url git://scm.gforge.inria.fr/qtshanoir/qtshanoir.git)
+set(tag c2d24141c9b59ca599316ad41f5f22b928d742a0)
 if (NOT DEFINED ${ep}_SOURCE_DIR)
-  set(location GIT_REPOSITORY ${url})
+  set(location GIT_REPOSITORY ${url} GIT_TAG ${tag})
 endif()
 
 
