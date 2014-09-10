@@ -29,7 +29,7 @@ EP_SetDirectories(${ep}
 ## #############################################################################
 
 set(url ${GITHUB_PREFIX}Inria-Visages/Anima.git)
-set(tag ff7768d7ab7f373e7825d0662ffa58cefcbd7cf7)
+set(tag f38c3aa7457677f3204b13f86e8a39e9a1ab1ad2)
 if (NOT DEFINED ${ep}_SOURCE_DIR)
   set(location GIT_REPOSITORY ${url} GIT_TAG ${tag})
 endif()
