@@ -39,7 +39,7 @@ EP_SetDirectories(${ep}
 
 set(url ${GITHUB_PREFIX}medInria/medInria-visages.git)
 if (NOT DEFINED ${ep}_SOURCE_DIR)
-  set(location GIT_REPOSITORY ${url})
+  set(location GIT_REPOSITORY ${url} GIT_TAG 352eb1c13d3db7cc3b86a36503714a73591acc52)
 endif()
 
 ## #############################################################################
