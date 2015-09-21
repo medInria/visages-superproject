@@ -28,7 +28,7 @@ EP_SetDirectories(${ep}
 ## #############################################################################
 
 set(url ${GITHUB_PREFIX}ocommowi/nlopt.git)
-set(tag "cmake-support")
+set(tag 1650ef8bb4e5226ec60a0e71de5809d719d732da)
 if (NOT DEFINED ${ep}_SOURCE_DIR)
   set(location GIT_REPOSITORY ${url} GIT_TAG ${tag})
 endif()
