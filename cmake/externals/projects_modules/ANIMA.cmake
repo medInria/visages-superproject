@@ -7,8 +7,7 @@ set(ep ANIMA)
 ## #############################################################################
 
 list(APPEND ${ep}_dependencies 
-  TinyXML2
-  nlopt
+  ""
   )
 
 ## #############################################################################
@@ -37,7 +36,7 @@ EP_SetDirectories(${ep}
 ## Define repository where get the sources
 ## #############################################################################
 
-set(url ${GITHUB_PREFIX}Inria-Visages/Anima.git)
+set(url ${GITHUB_PREFIX}Inria-Visages/Anima-Public.git)
 if (NOT DEFINED ${ep}_SOURCE_DIR)
   set(location GIT_REPOSITORY ${url})
 endif()
@@ -59,24 +58,22 @@ set(cmake_args
   -DCMAKE_CXX_FLAGS:STRING=${${ep}_cxx_flags}  
   -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
   -DBUILD_SHARED_LIBS:BOOL=${BUILD_SHARED_LIBS_${ep}}
-  -DBUILD_TOOLS:BOOL=OFF
-  -DBUILD_TESTING:BOOL=OFF
-  -DBUILD_ALL_MODULES:BOOL=OFF
-  -DBUILD_MODULE_MATHS:BOOL=ON
-  -DBUILD_MODULE_FILTERING:BOOL=ON
-  -DBUILD_MODULE_REGISTRATION:BOOL=ON
-  -DBUILD_MODULE_DIFFUSION:BOOL=OFF
-  -DBUILD_MODULE_SEGMENTATION:BOOL=OFF
-  -DBUILD_MODULE_QUANTITATIVE_MRI:BOOL=ON
-  -DTinyXML2_INCLUDE_DIR:PATH=${TinyXML2_SRC_DIR}
-  -DTinyXML2_LIBRARY_DIR:PATH=${TinyXML2_DIR}
-  -DUSE_NLOPT=ON
-  -DNLOPT_INCLUDE_DIR=${nlopt_SRC_DIR}/api
-  -DNLOPT_LIBRARY_DIR=${nlopt_DIR}
+  -DBUILD_ANIMA_TOOLS:BOOL=OFF
+  -DBUILD_ANIMA_TESTING:BOOL=OFF
+  -DUSE_ANIMA_PRIVATE:BOOL=ON
+  -DUSE_GITHUB_SSH:BOOL=ON
+  -DUSE_NLOPT:BOOL=ON
   -DUSE_RPI:BOOL=ON
-  -DRPI_DIR:FILEPATH=${RPI_DIR}
-  -DITK_DIR:FILEPATH=${ITK_DIR}
+  -DUSE_VTK:BOOL=OFF
+  -DUSE_SYSTEM_BOOST:BOOL=ON
+  -DUSE_SYSTEM_ITK:BOOL=ON
+  -DUSE_SYSTEM_NLOPT:BOOL=OFF
+  -DUSE_SYSTEM_RPI:BOOL=ON
+  -DUSE_SYSTEM_TCLAP:BOOL=ON
+  -DUSE_SYSTEM_TinyXML2:BOOL=OFF
   -DBOOST_ROOT:PATH=${BOOST_ROOT}
+  -DITK_DIR:FILEPATH=${ITK_DIR}
+  -DRPI_DIR:FILEPATH=${RPI_DIR}
   )
 
 ## #############################################################################
@@ -98,8 +95,8 @@ ExternalProject_Add(${ep}
 ## #############################################################################
 
 ExternalProject_Get_Property(${ep} binary_dir)
-set(${ep}_DIR ${binary_dir} PARENT_SCOPE)
-
+set(${ep}_BUILD_DIR ${binary_dir}/Anima PARENT_SCOPE)
+set(${ep}_PRIVATE_DIR ${binary_dir}/Anima-Private PARENT_SCOPE)
 
 ## #############################################################################
 ## Add custom targets
@@ -107,6 +104,9 @@ set(${ep}_DIR ${binary_dir} PARENT_SCOPE)
 
 EP_AddCustomTargets(${ep})
 
+else()
+  set(${ep}_BUILD_DIR ${${ep}_DIR} PARENT_SCOPE)
+  set(${ep}_PRIVATE_DIR ${${ep}_DIR}/../Anima-Private PARENT_SCOPE)
 endif()
 
 endfunction()

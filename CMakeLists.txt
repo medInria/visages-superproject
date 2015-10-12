@@ -6,9 +6,7 @@ project(visages-superProject)
 ## Add packages
 ## #############################################################################
 
-list(APPEND external_projects  
-  TinyXML2
-  nlopt
+list(APPEND external_projects
   ANIMA
   QtShanoir  
   visagesPlugins
