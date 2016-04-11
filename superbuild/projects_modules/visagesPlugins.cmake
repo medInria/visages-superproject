@@ -24,14 +24,6 @@ EP_Initialisation(${ep}
 
 
 if (NOT USE_SYSTEM_${ep})
-## #############################################################################
-## Set directories
-## #############################################################################
-
-EP_SetDirectories(${ep}
-  EP_DIRECTORIES ep_dirs
-  )
-
 
 ## #############################################################################
 ## Define repository where get the sources
@@ -59,15 +51,15 @@ set(cmake_args
   -DCMAKE_SHARED_LINKER_FLAGS:STRING=${${ep}_shared_linker_flags}  
   -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
   -DBUILD_SHARED_LIBS:BOOL=${BUILD_SHARED_LIBS_${ep}}
-  -DQT_QMAKE_EXECUTABLE:PATH=${QT_QMAKE_EXECUTABLE}
+  -DQt5_DIR:PATH=${Qt5_DIR}
   -Ddtk_DIR:FILEPATH=${dtk_DIR}
   -DITK_DIR:FILEPATH=${ITK_DIR}
   -DVTK_DIR:FILEPATH=${VTK_DIR}
   -DRPI_DIR:FILEPATH=${RPI_DIR}
-  -DMEDINRIA_DIR:FILEPATH=${MEDINRIA_DIR}
+  -DmedInria_DIR:FILEPATH=${medInria_DIR}
   -DANIMA_DIR:FILEPATH=${ANIMA_BUILD_DIR}
-  -DANIMA-PRIVATE_DIR:FILEPATH=${ANIMA_PRIVATE_DIR}
-  -DQTSHANOIR_DIR:FILEPATH=${QtShanoir_DIR}
+  -DANIMA_PRIVATE_DIR:FILEPATH=${ANIMA_PRIVATE_DIR}
+#  -DQTSHANOIR_DIR:FILEPATH=${QtShanoir_DIR}
   -DBOOST_ROOT:PATH=${BOOST_ROOT}
   )
 
@@ -76,13 +68,14 @@ set(cmake_args
 ## #############################################################################
 
 ExternalProject_Add(${ep}
-  ${ep_dirs}
+  PREFIX ${CMAKE_BINARY_DIR}/${ep}
+  SOURCE_DIR ${CMAKE_SOURCE_DIR}/thirdparts/${ep}
+  BINARY_DIR ${CMAKE_BINARY_DIR}/${ep}
   ${location}
   CMAKE_GENERATOR ${gen}
   CMAKE_ARGS ${cmake_args}
   DEPENDS ${${ep}_dependencies}
-  INSTALL_COMMAND ""  
-  UPDATE_COMMAND ""
+  INSTALL_COMMAND ""
   )
 
 ## #############################################################################
@@ -91,13 +84,6 @@ ExternalProject_Add(${ep}
 
 ExternalProject_Get_Property(${ep} binary_dir)
 set(${ep}_DIR ${binary_dir} PARENT_SCOPE)
-
-
-## #############################################################################
-## Add custom targets
-## #############################################################################
-
-EP_AddCustomTargets(${ep})
 
 endif()
 

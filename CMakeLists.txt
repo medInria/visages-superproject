@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.9)
+cmake_minimum_required(VERSION 3.1)
 
 project(visages-superProject)
 
@@ -8,7 +8,7 @@ project(visages-superProject)
 
 list(APPEND external_projects
   ANIMA
-  QtShanoir  
+#  QtShanoir  
   visagesPlugins
   )
 
@@ -18,8 +18,7 @@ list(APPEND external_projects
 ## #############################################################################
 
 set(CMAKE_MODULE_PATH
-  ${CMAKE_CURRENT_SOURCE_DIR}/cmake/externals
-  ${CMAKE_CURRENT_SOURCE_DIR}/cmake/externals/projects_modules
+  ${CMAKE_CURRENT_SOURCE_DIR}/superbuild/projects_modules
   ${CMAKE_MODULE_PATH}
   )
     
@@ -49,17 +48,12 @@ set(global_targets
 # This adds targets that will be run in each external-projects
 set_property(DIRECTORY PROPERTY EP_STEP_TARGETS ${global_targets})
 
-foreach (target ${global_targets})
-  add_custom_target(${target})
-endforeach()
-
-
 ## #############################################################################
-## Find medinria-superproject
+## Find medinria super build
 ## #############################################################################
 
-file(TO_CMAKE_PATH "${medInria-superProject_DIR}" medInria-superProject_DIR)
-find_package(medInria-superProject REQUIRED)
+file(TO_CMAKE_PATH “${MEDINRIA_SUPERBUILD_DIR}" MEDINRIA_SUPERBUILD_DIR)
+find_package(MEDINRIA_SUPERBUILD REQUIRED)
 
 
 ## #############################################################################
