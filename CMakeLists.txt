@@ -52,17 +52,11 @@ set_property(DIRECTORY PROPERTY EP_STEP_TARGETS ${global_targets})
 ## Find medinria super build
 ## #############################################################################
 
-file(TO_CMAKE_PATH “${MEDINRIA_SUPERBUILD_DIR}" MEDINRIA_SUPERBUILD_DIR)
+file(TO_CMAKE_PATH "${MEDINRIA_SUPERBUILD_DIR}" MEDINRIA_SUPERBUILD_DIR)
 find_package(MEDINRIA_SUPERBUILD REQUIRED)
-
 
 ## #############################################################################
 ## Configure external-projects
 ## #############################################################################
 
 include(ConfigureExternalProjects)
-
-
-
-
-
