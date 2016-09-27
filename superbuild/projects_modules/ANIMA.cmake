@@ -89,11 +89,11 @@ ExternalProject_Add(${ep}
 
 ExternalProject_Get_Property(${ep} binary_dir)
 set(${ep}_BUILD_DIR ${binary_dir}/Anima PARENT_SCOPE)
-set(${ep}_PRIVATE_DIR ${binary_dir}/Anima-Private PARENT_SCOPE)
+set(${ep}_PRIVATE_DIR ${binary_dir}/Anima_Private PARENT_SCOPE)
 
 else()
   set(${ep}_BUILD_DIR ${${ep}_DIR} PARENT_SCOPE)
-  set(${ep}_PRIVATE_DIR ${${ep}_DIR}/../Anima-Private PARENT_SCOPE)
+  set(${ep}_PRIVATE_DIR ${${ep}_DIR}/../Anima_Private PARENT_SCOPE)
 endif()
 
 endfunction()
