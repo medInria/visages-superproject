@@ -8,7 +8,7 @@ set(ep visagesPlugins)
 
 list(APPEND ${ep}_dependencies 
   ANIMA
-#  QtShanoir
+  QtShanoir
   )
   
   
