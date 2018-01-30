@@ -52,7 +52,7 @@ set(cmake_args
 
 ExternalProject_Add(${ep}
   PREFIX ${CMAKE_BINARY_DIR}/${ep}
-  SOURCE_DIR ${CMAKE_SOURCE_DIR}/ext/${ep}
+  SOURCE_DIR ${CMAKE_SOURCE_DIR}/${ep}
   BINARY_DIR ${CMAKE_BINARY_DIR}/${ep}
   ${location}
   CMAKE_GENERATOR ${gen}
