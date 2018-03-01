@@ -29,8 +29,9 @@ if (NOT USE_SYSTEM_${ep})
 ## #############################################################################
 
 set(url ${GITHUB_PREFIX}Inria-Visages/Anima-Public.git)
+set(tag 31ccfa1c25e668cc18dcfce9e487d1d7ae9183f9)
 if (NOT DEFINED ${ep}_SOURCE_DIR)
-  set(location GIT_REPOSITORY ${url})
+  set(location GIT_REPOSITORY ${url} GIT_TAG ${tag})
 endif()
 
 

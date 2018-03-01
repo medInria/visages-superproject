@@ -20,8 +20,9 @@ if (NOT USE_SYSTEM_${ep})
 ## #############################################################################
 
 set(url ${GITHUB_PREFIX}Inria-Visages/QtShanoir.git)
+set(tag 360c3ef96529287aed8d5a4fa89ab71dc51d7f90)
 if (NOT DEFINED ${ep}_SOURCE_DIR)
-  set(location GIT_REPOSITORY ${url})
+  set(location GIT_REPOSITORY ${url} GIT_TAG ${tag})
 endif()
 
 
