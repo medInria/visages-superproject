@@ -30,7 +30,7 @@ if (NOT USE_SYSTEM_${ep})
 ## #############################################################################
 
 set(url ${GITHUB_PREFIX}medInria/medInria-visages.git)
-set(tag e7cbc5f39b0b570fc1578ba1e439255deaba26c7)
+set(tag 635831f2eb3b53892bef13d3d4c0f259b0f2c570)
 if (NOT DEFINED ${ep}_SOURCE_DIR)
   set(location GIT_REPOSITORY ${url} GIT_TAG ${tag})
 endif()
