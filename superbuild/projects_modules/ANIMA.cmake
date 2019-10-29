@@ -73,12 +73,18 @@ set(cmake_args
 ## Add external-project
 ## #############################################################################
 
+epComputPath(${ep})
+
 ExternalProject_Add(${ep}
-  PREFIX ${CMAKE_BINARY_DIR}/${ep}
-  SOURCE_DIR ${CMAKE_SOURCE_DIR}/${ep}
-  BINARY_DIR ${CMAKE_BINARY_DIR}/${ep}
+  PREFIX ${EP_PATH_SOURCE}
+  SOURCE_DIR ${EP_PATH_SOURCE}/${ep}
+  BINARY_DIR ${build_path}
+  TMP_DIR ${tmp_path}
+  STAMP_DIR ${stamp_path}
+
   ${location}
   CMAKE_GENERATOR ${gen}
+  CMAKE_GENERATOR_PLATFORM ${CMAKE_GENERATOR_PLATFORM}
   CMAKE_ARGS ${cmake_args}
   DEPENDS ${${ep}_dependencies}
   INSTALL_COMMAND ""
